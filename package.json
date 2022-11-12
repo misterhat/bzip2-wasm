@@ -1,0 +1,29 @@
+{
+  "name": "bzip2-wasm",
+  "version": "1.0.0",
+  "description": "compress and decompress bzip2 buffers in node and browser",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misterhat/bzip2-wasm.git"
+  },
+  "keywords": [
+    "bzip2",
+    "bz2",
+    "bzip",
+    "wasm",
+    "compress",
+    "decompress",
+    "archive"
+  ],
+  "author": "Zorian Medwid <misterhat144@gmail.com>",
+  "license": "bzip2-1.0.6",
+  "bugs": {
+    "url": "https://github.com/misterhat/bzip2-wasm/issues"
+  },
+  "homepage": "https://github.com/misterhat/bzip2-wasm#readme"
+}
