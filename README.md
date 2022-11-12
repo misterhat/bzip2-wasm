@@ -30,7 +30,7 @@ console.log('decompressed length:', decompressed.length);
 
 ### bzip2 = new BZip2()
 
-### bzip2.init()
+### async bzip2.init()
 fetch and load the wasm. required for following methods.
 
 ### bzip2.compress(decompressed, blockSize = 5, compressedSize = decompressed.length)
