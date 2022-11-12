@@ -3,40 +3,59 @@
 (de)compress buffers in node and browser using wasm-compiled
 [bzip2](https://sourceware.org/bzip2/).
 
+## install
+
+    $ npm install bzip2-wasm
+
 ## example
 ```javascript
 import BZip2 from "wasm-bzip2";
 import fs from 'fs';
 
 const bzip2 = new BZip2();
+
 await bzip2.init();
 
 const licenseText = fs.readFileSync('./LICENSE');
-
 console.log('original length:', licenseText.length);
 
 const compressed = bzip2.compress(licenseText);
-
 console.log('compressed length:', compressed.length);
 
 const decompressed = bzip2.decompress(compressed, licenseText.length);
-
 console.log('decompressed length:', decompressed.length);
 ```
 
 ## api
 
-### bzip2 = new BZip2();
+### bzip2 = new BZip2()
+
+### bzip2.init()
 fetch and load the wasm. required for following methods.
 
 ### bzip2.compress(decompressed, blockSize = 5, compressedSize = decompressed.length)
+compress an array of bytes.
+
+`decompressed` should be array-like
+([TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
+or regular) of bytes.
+
+`blockSize` should be a Number between 1-9 to determine block size (multiplied
+by 100k). default is 5 (500k).
+
+`compressedLength` should be a Number that is at least large or larger
+than the resulting compressed data. default is `decompressed.length`.
+
+returns a
+[`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+of compressed data.
 
 ### bzip2.decompress(compressed = [], decompressedLength = 0)
-decompress compressed array of bytes.
+decompress a compressed array of bytes.
 
-`compressed` should be array-like (
-[TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
-or regular).
+`compressed` should be array-like
+([TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
+or regular) of bytes.
 
 `decompressedLength` should be a Number that is at least large or larger
 than the resulting decompressed data.

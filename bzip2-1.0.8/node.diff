@@ -1,5 +1,5 @@
---- bzip2.mjs.original	2022-11-12 07:36:30.033244625 -0600
-+++ bzip2.mjs	2022-11-12 07:38:26.032894936 -0600
+--- bzip2.mjs.original	2022-11-12 12:45:21.255261049 -0600
++++ bzip2.mjs	2022-11-12 12:45:32.667224733 -0600
 @@ -1064,6 +1064,10 @@
      }
    }
@@ -11,10 +11,3 @@
    // Otherwise, getBinary should be able to get it synchronously
    return Promise.resolve().then(function() { return getBinary(wasmBinaryFile); });
  }
-@@ -2017,4 +2021,4 @@
- }
- );
- })();
--export default loadBZip2WASM;
-\ No newline at end of file
-+export default loadBZip2WASM;

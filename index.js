@@ -3,10 +3,10 @@ import loadBZip2WASM from './bzip2-1.0.8/bzip2.mjs';
 const ERROR_MESSAGES = {
     '-2': 'BZ_PARAM_ERROR: incorrect parameters',
     '-3': "BZ_MEM_ERROR: couldn't allocate enough memory",
-    '-4': 'BZ_DATA_ERROR: data integrity error when decompressing.',
+    '-4': 'BZ_DATA_ERROR: data integrity error when decompressing',
     '-5': 'BZ_DATA_ERROR_MAGIC: compressed data has incorrect header',
     '-7': 'BZ_UNEXPECTED_EOF: compressed data ends too early',
-    '-8': 'BZ_OUTBUFF_FULL: decompressed buffer is full'
+    '-8': 'BZ_OUTBUFF_FULL: destination buffer is full'
 };
 
 class BZip2 {
@@ -121,6 +121,10 @@ class BZip2 {
 
         if (!compressedLength) {
             compressedLength = decompressed.length;
+        }
+
+        if (compressedLength < 128) {
+            compressedLength = 128;
         }
 
         if (blockSize <= 0 || blockSize > 9) {
