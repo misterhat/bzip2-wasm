@@ -1,5 +1,4 @@
 import loadBZip2WASM from './bzip2-1.0.8/bzip2.mjs';
-import fs from 'fs'; // TODO remove
 
 const ERROR_MESSAGES = {
     '-2': 'BZ_PARAM_ERROR: incorrect parameters',
@@ -124,10 +123,8 @@ class BZip2 {
             compressedLength = decompressed.length;
         }
 
-        if (blockSize <= 0) {
-            blockSize = 1;
-        } else if (blockSize > 9) {
-            blockSize = 9;
+        if (blockSize <= 0 || blockSize > 9) {
+            throw new RangeError('blockSize should be between 1-9');
         }
 
         const {
@@ -153,21 +150,5 @@ class BZip2 {
         return this.createBuffer(compressedPtr, compressedLengthPtr);
     }
 }
-
-(async function () {
-    const bzip2 = new BZip2();
-    await bzip2.init();
-
-    const test = fs.readFileSync('./test.html');
-
-    console.log(test.length);
-
-    const compressed = bzip2.compress(test, 1);
-
-    console.log(compressed.length);
-
-    const decompressed = bzip2.decompress(compressed, test.length);
-    console.log(decompressed);
-})();
 
 export default BZip2;
