@@ -1,6 +1,6 @@
 {
   "name": "bzip2-wasm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "compress and decompress bzip2 buffers in node and browser",
   "main": "index.js",
   "type": "module",

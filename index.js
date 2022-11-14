@@ -23,8 +23,8 @@ class BZip2 {
         // check if node
         // http://philiplassen.com/2021/08/11/node-es6-emscripten.html
         if (typeof process !== 'undefined') {
-            const { dirname } = await import('path');
-            const { createRequire } = await import('module');
+            const { dirname } = await import/* webpackIgnore: true */('path');
+            const { createRequire } = await import(/* webpackIgnore: true */'module');
 
             globalThis.__dirname = dirname(import.meta.url);
             globalThis.require = createRequire(import.meta.url);
